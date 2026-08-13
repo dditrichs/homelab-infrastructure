@@ -2,7 +2,7 @@
 
 ## Container Overview
 * **CT ID:** `104`
-* **Hostname:** `openwebui`
+* `* **Hostname:** openwebui-ollama`[cite: 2]
 * **IP Address:** `10.0.0.104`
 * **Ports:** `3000` (Open WebUI Dashboard) | `11434` (Ollama API)
 * **Storage:** `local-lvm`
@@ -26,3 +26,4 @@
 nvtop
 # OR
 nvidia-smi
+```

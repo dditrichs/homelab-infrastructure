@@ -22,6 +22,7 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 * `docs/` — Technical documentation and verification testing logs.
 * `docs/UPTIME_KUMA.md` — Uptime Kuma installation and monitor configurations.
 * `docs/JELLYFIN.md` — Jellyfin media server deployment, ZFS storage bind mounts, and maintenance.
+* `docs/MINECRAFT.md` — Dedicated Minecraft server VM specs, network configuration, and Docker Compose setup.
 * `docs/OPEN_WEBUI.md` — Open WebUI & Ollama LXC container setup, GPU passthrough, and active models.
 
 ---

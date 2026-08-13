@@ -27,3 +27,4 @@ To optimize system performance and storage efficiency, the deployment isolates t
 To verify the Jellyfin server status directly on the container:
 ```bash
 systemctl status jellyfin
+```

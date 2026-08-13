@@ -16,3 +16,20 @@
 | Port | Protocol | Service / Function |
 | :--- | :--- | :--- |
 | `25565` | TCP / UDP | Primary Game Client Connection |
+
+---
+
+## Service Management
+
+### Managing the Container
+Navigate to the server directory inside VM 103 (`/home/dditrichs/minecraft`) to manage the Docker lifecycle:
+
+```bash
+# Start the server in the background
+docker compose up -d
+
+# View real-time server logs
+docker compose logs -f
+
+# Stop the server cleanly
+docker compose down
