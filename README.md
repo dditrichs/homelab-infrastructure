@@ -16,6 +16,7 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 ## Repository Structure
 
 * `configs/` — Sanitized configuration files for homelab services.
+* `configs/lxc/` — Proxmox VE container definition files (hardware, bind mounts, GPU passthrough).
 * `configs/unbound/` — Recursive DNS resolver configuration (`pi-hole.conf`).
 * `docs/` — Technical documentation and verification testing logs.
 * `docs/UPTIME_KUMA.md` — Uptime Kuma installation and monitor configurations.
