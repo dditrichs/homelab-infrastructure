@@ -5,6 +5,7 @@
 [![Pi-hole](https://img.shields.io/badge/Pi--hole-v6-96060C?style=flat&logo=pi-hole)](https://pi-hole.net)
 [![Unbound](https://img.shields.io/badge/Unbound-DNSSEC-4183C4)](https://nlnetlabs.nl/projects/unbound/about/)
 [![Uptime Kuma](https://img.shields.io/badge/Uptime_Kuma-Monitoring-5CDB95?style=flat&logo=uptime-kuma)](https://github.com/louislam/uptime-kuma)
+[![Minecraft](https://img.shields.io/badge/Minecraft-Java_Server-2E7D32?style=flat&logo=minecraft&logoColor=white)](https://www.minecraft.net)
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-Media_Server-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
 [![Open WebUI](https://img.shields.io/badge/Open_WebUI-v0.5-008080?style=flat&logo=open-webui&logoColor=white)](https://github.com/open-webui/open-webui)
 [![Ollama](https://img.shields.io/badge/Ollama-Local_AI-000000?style=flat&logo=ollama&logoColor=white)](https://ollama.com)
@@ -34,6 +35,7 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 | **Unbound** | LXC 100 (Debian) | `127.0.0.1:5335` | Local Recursive DNSSEC Resolver |
 | **Uptime Kuma** | LXC 101 (Debian) | `10.0.0.101:3001` | Infrastructure & Service Health Monitoring |
 | **Jellyfin** | LXC 102 (Debian) | `10.0.0.102:8096` | Media Streaming Platform (ZFS Storage Bind Mounts) |
+| **Minecraft Server** | VM 103 (Ubuntu) | `10.0.0.103:25565` | Dedicated Minecraft Server (Docker Compose) |
 | **Open WebUI / Ollama** | LXC 104 (Debian) | `10.0.0.104:3000` | Self-Hosted Local AI LLM Service (GTX 1650 SUPER Passthrough) |
 
 ---
