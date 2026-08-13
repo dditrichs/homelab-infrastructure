@@ -30,7 +30,7 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 | **Pi-hole v6** | LXC 100 (Debian) | `10.0.0.100:53` | Network-wide Ad & Tracker Filtering |
 | **Unbound** | LXC 100 (Debian) | `127.0.0.1:5335` | Local Recursive DNSSEC Resolver |
 | **Uptime Kuma** | LXC 101 (Debian) | `10.0.0.101:3001` | Infrastructure & Service Health Monitoring |
-| **Open WebUI / Ollama** | LXC 104 (Debian) | `10.0.0.200:3000` | Self-Hosted Local AI LLM Service (GTX 1650 SUPER Passthrough) |
+| **Open WebUI / Ollama** | LXC 104 (Debian) | `10.0.0.104:3000` | Self-Hosted Local AI LLM Service (GTX 1650 SUPER Passthrough) |
 
 ---
 
