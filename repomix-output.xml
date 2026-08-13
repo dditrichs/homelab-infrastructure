@@ -1,0 +1,181 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+configs/
+  unbound/
+    pi-hole.conf
+docs/
+  UPTIME_KUMA.md
+.gitignore
+README.md
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="configs/unbound/pi-hole.conf">
+server:
+    verbosity: 1
+    interface: 127.0.0.1
+    port: 5335
+    do-ip4: yes
+    do-udp: yes
+    do-tcp: yes
+    do-ip6: no
+
+    root-hints: "/var/lib/unbound/root.hints"
+    auto-trust-anchor-file: "/var/lib/unbound/root.key"
+    access-control: 127.0.0.1 allow
+
+    hide-identity: yes
+    hide-version: yes
+
+    private-address: 10.0.0.0/8
+    private-address: 172.16.0.0/12
+    private-address: 192.168.0.0/16
+
+    harden-glue: yes
+    harden-dnssec-stripped: yes
+    use-caps-for-id: no
+    edns-buffer-size: 1232
+    prefetch: yes
+    num-threads: 1
+</file>
+
+<file path="docs/UPTIME_KUMA.md">
+# Service Documentation: Uptime Kuma (LXC 101)
+
+## Container Overview
+* **CT ID:** `101`
+* **Hostname:** `kuma`
+* **IP Address:** `10.0.0.101`
+* **Port:** `3001` (Web Dashboard)
+* **Storage:** `local-lvm` (SSD)
+* **Specs:** 2 vCPU / 2048 MB RAM
+
+---
+
+## Configured Monitors
+
+### 1. Pi-hole Service Stack (`10.0.0.100`)
+
+| Monitor Name | Type | Target | Port | Interval | Purpose / Failure Mode |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Pi-hole Ping** | Ping | `10.0.0.100` | — | 60s | Host/Container Liveness (Checks if LXC 100 is online) |
+| **Pi-hole DNS** | DNS | `google.com` | `53` (Resolver: `10.0.0.100`) | 60s | Resolution Health (Checks if `pihole-FTL` is serving queries) |
+| **Pi-hole Admin Web** | HTTP(s) | `http://10.0.0.100/admin` | `80` | 60s | Web UI Availability (Checks web server/lighttpd status) |
+
+---
+
+## Troubleshooting Quick Reference
+
+* **Ping Down:** LXC container 100 is stopped or unroutable. Check Proxmox VE host (`10.0.0.147`).
+* **Ping UP / DNS Down:** Container running, but FTL engine crashed. SSH into `10.0.0.100` and run `systemctl status pihole-FTL`.
+* **DNS UP / HTTP Down:** DNS works, but administrative interface is unresponsive.
+</file>
+
+<file path=".gitignore">
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Sensitive credentials, certificates, & private keys
+*.pem
+*.key
+*.crt
+*.env
+*.pfx
+id_rsa
+id_ed25519
+*_key
+
+# Backup files, temporary files, & system logs
+*.log
+*.tar.gz
+*.bak
+*.tmp
+</file>
+
+<file path="README.md">
+# Proxmox VE Homelab Infrastructure
+
+[![Proxmox VE](https://img.shields.io/badge/Proxmox_VE-8.x-E57008?style=flat&logo=proxmox)](https://www.proxmox.com)
+[![Debian](https://img.shields.io/badge/Debian-12-A81D33?style=flat&logo=debian)](https://www.debian.org)
+[![Pi-hole](https://img.shields.io/badge/Pi--hole-v6-96060C?style=flat&logo=pi-hole)](https://pi-hole.net)
+[![Unbound](https://img.shields.io/badge/Unbound-DNSSEC-4183C4)](https://nlnetlabs.nl/projects/unbound/about/)
+[![Uptime Kuma](https://img.shields.io/badge/Uptime_Kuma-Monitoring-5CDB95?style=flat&logo=uptime-kuma)](https://github.com/louislam/uptime-kuma)
+
+A hands-on, evolving homelab project documenting core network services, Proxmox virtualization, and systems administration.
+
+---
+
+## Repository Structure
+
+* `configs/` — Sanitized configuration files for homelab services.
+* `configs/unbound/` — Recursive DNS resolver configuration (`pi-hole.conf`).
+* `docs/` — Technical documentation and verification testing logs.
+* `docs/UPTIME_KUMA.md` — Uptime Kuma installation and monitor configurations.
+
+---
+
+## Active Infrastructure Services 
+
+| Service | Host / Container | IP / Port | Function |
+| :--- | :--- | :--- | :--- |
+| **Proxmox VE** | Bare-Metal Host | `10.0.0.147` | Primary Hypervisor Platform |
+| **Pi-hole v6** | LXC 100 (Debian) | `10.0.0.100:53` | Network-wide Ad & Tracker Filtering |
+| **Unbound** | LXC 100 (Debian) | `127.0.0.1:5335` | Local Recursive DNSSEC Resolver |
+| **Uptime Kuma** | LXC 101 (Debian) | `10.0.0.101:3001` | Infrastructure & Service Health Monitoring |
+
+---
+
+## DNS Validation Commands
+
+```bash
+# 1. Invalid signature (Must return SERVFAIL)
+dig fail01.dnssec.works @127.0.0.1 -p 5335
+
+# 2. Valid signature (Must return NOERROR with 'ad' flag)
+dig cloudflare.com @127.0.0.1 -p 5335
+</file>
+
+</files>

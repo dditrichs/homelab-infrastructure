@@ -1,0 +1,19 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Sensitive credentials, certificates, & private keys
+*.pem
+*.key
+*.crt
+*.env
+*.pfx
+id_rsa
+id_ed25519
+*_key
+
+# Backup files, temporary files, & system logs
+*.log
+*.tar.gz
+*.bak
+*.tmp
