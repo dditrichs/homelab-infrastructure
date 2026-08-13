@@ -3,7 +3,7 @@
 ## Container Overview
 * **CT ID:** `104`
 * **Hostname:** `openwebui`
-* **IP Address:** `10.0.0.200`
+* **IP Address:** `10.0.0.104`
 * **Ports:** `3000` (Open WebUI Dashboard) | `11434` (Ollama API)
 * **Storage:** `local-lvm`
 * **GPU Passthrough:** NVIDIA GeForce GTX 1650 SUPER (`/dev/nvidia0`)
