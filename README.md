@@ -1,6 +1,6 @@
 # Proxmox VE Homelab Infrastructure
 
-[![Proxmox VE](https://img.shields.io/badge/Proxmox_VE-8.x-E57008?style=flat&logo=proxmox)](https://www.proxmox.com)
+[![Proxmox VE](https://img.shields.io/badge/Proxmox_VE-9.x-E57008?style=flat&logo=proxmox)](https://www.proxmox.com)
 [![Debian](https://img.shields.io/badge/Debian-12-A81D33?style=flat&logo=debian)](https://www.debian.org)
 [![Pi-hole](https://img.shields.io/badge/Pi--hole-v6-96060C?style=flat&logo=pi-hole)](https://pi-hole.net)
 [![Unbound](https://img.shields.io/badge/Unbound-DNSSEC-4183C4)](https://nlnetlabs.nl/projects/unbound/about/)
