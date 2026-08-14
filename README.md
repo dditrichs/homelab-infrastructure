@@ -19,6 +19,7 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 ## Repository Structure
 
 * `configs/` — Sanitized configuration files for homelab services.
+* `configs/docker/` — Docker Compose deployment files for containerized services.
 * `configs/lxc/` — Proxmox VE container definition files (hardware, bind mounts, GPU passthrough).
 * `configs/unbound/` — Recursive DNS resolver configuration (`pi-hole.conf`).
 * `docs/` — Technical documentation and verification testing logs.
@@ -26,6 +27,8 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 * `docs/JELLYFIN.md` — Jellyfin media server deployment, ZFS storage bind mounts, and maintenance.
 * `docs/MINECRAFT.md` — Dedicated Minecraft server VM specs, network configuration, and Docker Compose setup.
 * `docs/OPEN_WEBUI.md` — Open WebUI & Ollama LXC container setup, GPU passthrough, and active models.
+* `docs/VAULTWARDEN.md` — Vaultwarden password manager setup and SSL documentation.
+* `docs/NGINX_PROXY_MANAGER.md` — Nginx Proxy Manager architecture and wildcard SSL guide.
 
 ---
 
