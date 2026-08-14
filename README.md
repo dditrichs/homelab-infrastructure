@@ -9,6 +9,8 @@
 [![Jellyfin](https://img.shields.io/badge/Jellyfin-Media_Server-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
 [![Open WebUI](https://img.shields.io/badge/Open_WebUI-v0.5-008080?style=flat&logo=open-webui&logoColor=white)](https://github.com/open-webui/open-webui)
 [![Ollama](https://img.shields.io/badge/Ollama-Local_AI-000000?style=flat&logo=ollama&logoColor=white)](https://ollama.com)
+[![Nginx Proxy Manager](https://img.shields.io/badge/Nginx_Proxy_Manager-SSL_Proxy-009900?style=flat&logo=nginxproxymanager&logoColor=white)](https://nginxproxymanager.com)
+[![Vaultwarden](https://img.shields.io/badge/Vaultwarden-Password_Manager-175DDC?style=flat&logo=bitwarden&logoColor=white)](https://github.com/dani-garcia/vaultwarden)
 
 A hands-on, evolving homelab project documenting core network services, Proxmox virtualization, and systems administration.
 
@@ -38,6 +40,9 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 | **Jellyfin** | LXC 102 (Debian) | `10.0.0.102:8096` | Media Streaming Platform (ZFS Storage Bind Mounts) |
 | **Minecraft Server** | VM 103 (Ubuntu) | `10.0.0.103:25565` | Dedicated Minecraft Server (Docker Compose) |
 | **Open WebUI / Ollama** | LXC 104 (Debian) | `10.0.0.104:3000` | Self-Hosted Local AI LLM Service (GTX 1650 SUPER Passthrough) |
+| **Vaultwarden** | Docker Container | `10.0.0.105:8080` | Self-Hosted Password Manager (Secured via NPM & SSL) |
+| **Nginx Proxy Manager** | Bare-Metal / Docker | `10.0.0.106:81` | Reverse Proxy & Wildcard SSL Certificate Management |
+
 
 ---
 
