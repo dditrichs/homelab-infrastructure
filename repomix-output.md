@@ -1,0 +1,418 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+# File Summary
+
+## Purpose
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+## File Format
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  a. A header with the file path (## File: path/to/file)
+  b. The full contents of the file in a code block
+
+## Usage Guidelines
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+## Notes
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+
+# Directory Structure
+````
+configs/
+  docker/
+    minecraft/
+      docker-compose.yml
+  lxc/
+    100-pihole.conf
+    101-uptimekuma.conf
+    102-jellyfin.conf
+    104-openwebui.conf
+  unbound/
+    pi-hole.conf
+  vms/
+    103-minecraft.conf
+docs/
+  JELLYFIN.md
+  MINECRAFT.md
+  OPEN_WEBUI.md
+  UPTIME_KUMA.md
+.gitignore
+README.md
+````
+
+# Files
+
+## File: configs/lxc/100-pihole.conf
+````ini
+arch: amd64
+cores: 1
+features: nesting=1
+hostname: pihole
+memory: 512
+nameserver: 127.0.0.1
+net0: name=eth0,bridge=vmbr0,gw=10.0.0.1,hwaddr=xx:xx:xx:xx:xx:xx,ip=10.0.0.100/24,type=veth
+onboot: 1
+ostype: debian
+rootfs: local-lvm:vm-100-disk-0,size=4G
+swap: 512
+unprivileged: 1
+````
+
+## File: configs/lxc/101-uptimekuma.conf
+````ini
+arch: amd64
+cores: 2
+features: nesting=1
+hostname: kuma
+memory: 2048
+nameserver: 10.0.0.100
+net0: name=eth0,bridge=vmbr0,gw=10.0.0.1,hwaddr=xx:xx:xx:xx:xx:xx,ip=10.0.0.101/24,type=veth
+ostype: debian
+rootfs: local-lvm:vm-101-disk-0,size=8G
+swap: 512
+unprivileged: 1
+````
+
+## File: configs/lxc/102-jellyfin.conf
+````ini
+arch: amd64
+cores: 2
+features: nesting=1
+hostname: jellyfin
+memory: 2048
+mp0: /seagate-pool/media,mp=/media
+net0: name=eth0,bridge=vmbr0,firewall=1,gw=10.0.0.1,hwaddr=xx:xx:xx:xx:xx:xx,ip=10.0.0.102/24,type=veth
+ostype: debian
+rootfs: local-lvm:vm-102-disk-0,size=16G
+swap: 2048
+unprivileged: 1
+````
+
+## File: configs/lxc/104-openwebui.conf
+````ini
+arch: amd64
+cores: 4
+dev0: /dev/nvidia0
+dev1: /dev/nvidiactl
+dev2: /dev/nvidia-uvm
+dev3: /dev/nvidia-uvm-tools
+dev4: /dev/nvidia-caps/nvidia-cap1
+dev5: /dev/nvidia-caps/nvidia-cap2
+features: nesting=1,keyctl=1
+hostname: openwebui-ollama
+memory: 8192
+net0: name=eth0,bridge=vmbr0,gw=10.0.0.1,hwaddr=xx:xx:xx:xx:xx:xx,ip=10.0.0.104/24,type=veth
+onboot: 1
+ostype: debian
+rootfs: local-lvm:vm-104-disk-0,size=50G
+swap: 0
+tags: ai;community-script;interface
+timezone: America/New_York
+unprivileged: 1
+lxc.cgroup2.devices.allow: c 10:200 rwm
+lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
+lxc.cgroup2.devices.allow: c 195:* rwm
+lxc.cgroup2.devices.allow: c 239:* rwm
+lxc.cgroup2.devices.allow: c 508:* rwm
+lxc.mount.entry: /dev/nvidia0 /dev/nvidia0 none bind,optional,create=file
+lxc.mount.entry: /dev/nvidiactl /dev/nvidiactl none bind,optional,create=file
+lxc.mount.entry: /dev/nvidia-uvm /dev/nvidia-uvm none bind,optional,create=file
+lxc.mount.entry: /dev/nvidia-uvm-tools /dev/nvidia-uvm-tools none bind,optional,create=file
+````
+
+## File: configs/unbound/pi-hole.conf
+````ini
+server:
+    verbosity: 1
+    interface: 127.0.0.1
+    port: 5335
+    do-ip4: yes
+    do-udp: yes
+    do-tcp: yes
+    do-ip6: no
+
+    root-hints: "/var/lib/unbound/root.hints"
+    auto-trust-anchor-file: "/var/lib/unbound/root.key"
+    access-control: 127.0.0.1 allow
+
+    hide-identity: yes
+    hide-version: yes
+
+    private-address: 10.0.0.0/8
+    private-address: 172.16.0.0/12
+    private-address: 192.168.0.0/16
+
+    harden-glue: yes
+    harden-dnssec-stripped: yes
+    use-caps-for-id: no
+    edns-buffer-size: 1232
+    prefetch: yes
+    num-threads: 1
+````
+
+## File: configs/vms/103-minecraft.conf
+````ini
+boot: order=scsi0;ide2;net0
+cores: 4
+cpu: x86-64-v2-AES
+ide2: local:iso/ubuntu-22.04.5-live-server-amd64.iso,media=cdrom,size=2086842K
+memory: 8192
+name: minecraft
+net0: virtio=xx:xx:xx:xx:xx:xx,bridge=vmbr0,firewall=1
+numa: 0
+ostype: l26
+scsi0: local-lvm:vm-103-disk-0,iothread=1,size=32G
+scsihw: virtio-scsi-single
+sockets: 1
+````
+
+## File: docs/UPTIME_KUMA.md
+````markdown
+# Service Documentation: Uptime Kuma (LXC 101)
+
+## Container Overview
+* **CT ID:** `101`
+* **Hostname:** `kuma`
+* **IP Address:** `10.0.0.101`
+* **Port:** `3001` (Web Dashboard)
+* **Storage:** `local-lvm` (SSD)
+* **Specs:** 2 vCPU / 2048 MB RAM
+
+---
+
+## Configured Monitors
+
+### 1. Pi-hole Service Stack (`10.0.0.100`)
+
+| Monitor Name | Type | Target | Port | Interval | Purpose / Failure Mode |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Pi-hole Ping** | Ping | `10.0.0.100` | — | 60s | Host/Container Liveness (Checks if LXC 100 is online) |
+| **Pi-hole DNS** | DNS | `google.com` | `53` (Resolver: `10.0.0.100`) | 60s | Resolution Health (Checks if `pihole-FTL` is serving queries) |
+| **Pi-hole Admin Web** | HTTP(s) | `http://10.0.0.100/admin` | `80` | 60s | Web UI Availability (Checks web server/lighttpd status) |
+
+---
+
+## Troubleshooting Quick Reference
+
+* **Ping Down:** LXC container 100 is stopped or unroutable. Check Proxmox VE host (`10.0.0.147`).
+* **Ping UP / DNS Down:** Container running, but FTL engine crashed. SSH into `10.0.0.100` and run `systemctl status pihole-FTL`.
+* **DNS UP / HTTP Down:** DNS works, but administrative interface is unresponsive.
+````
+
+## File: .gitignore
+````
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Sensitive credentials, certificates, & private keys
+*.pem
+*.key
+*.crt
+*.env
+*.pfx
+id_rsa
+id_ed25519
+*_key
+
+# Backup files, temporary files, & system logs
+*.log
+*.tar.gz
+*.bak
+*.tmp
+````
+
+## File: configs/docker/minecraft/docker-compose.yml
+````yaml
+services:
+  mc:
+    image: itzg/minecraft-server:latest
+    pull_policy: daily
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      MEMORY: 7G
+      MOTD: "Hi"
+    volumes:
+      - ./data:/data
+````
+
+## File: docs/JELLYFIN.md
+````markdown
+# Service Documentation: Jellyfin Media Server (LXC 102)
+
+## Container Overview
+* **CT ID:** `102`
+* **Hostname:** `jellyfin`
+* **IP Address:** `10.0.0.102`
+* **Port:** `8096` (HTTP Web UI)
+* **OS:** Debian 13 (Trixie)
+* **Root Storage:** `local-lvm` (NVMe/SSD for OS & Database performance)
+* **Media Storage:** `seagate-pool` (4TB HDD ZFS Pool via Proxmox Bind Mount)
+* **Deployment Method:** Native Debian Systemd Service (`jellyfin.service`)
+
+---
+
+## Architecture & Storage Configuration
+
+### OS & Application Separation
+To optimize system performance and storage efficiency, the deployment isolates the operating system from heavy media storage:
+1. **Application Runtime & Database (`local-lvm`):** Hosted on high-speed SSD storage to ensure snappy database queries, fast metadata retrieval, and quick web UI rendering.
+2. **Bulk Media Assets (`seagate-pool`):** Attached via a Proxmox LXC bind mount to map the local 4TB ZFS hard drive array directly into the container filesystem.
+
+---
+
+## Maintenance & Service Verification
+
+### Checking Service Status
+To verify the Jellyfin server status directly on the container:
+```bash
+systemctl status jellyfin
+```
+````
+
+## File: docs/MINECRAFT.md
+````markdown
+# Service Documentation: Dedicated Minecraft Server (VM 103)
+
+## Virtual Machine Overview
+* **VM ID:** `103`
+* **Hostname:** `minecraft`
+* **IP Address:** `10.0.0.103`
+* **OS:** Ubuntu 22.04.5 LTS
+* **Hypervisor Allocation:** 4 Cores / 8192 MB RAM / 32 GB SSD Storage (`local-lvm`)
+* **Storage Controller:** `virtio-scsi-single` with `iothread=1` (Optimized I/O)
+* **Deployment Method:** Docker Compose (`itzg/minecraft-server`)
+
+---
+
+## Network & Port Configuration
+
+| Port | Protocol | Service / Function |
+| :--- | :--- | :--- |
+| `25565` | TCP / UDP | Primary Game Client Connection |
+
+---
+
+## Service Management
+
+### Managing the Container
+Navigate to the server directory inside VM 103 (`/home/dditrichs/minecraft`) to manage the Docker lifecycle:
+
+```bash
+# Start the server in the background
+docker compose up -d
+
+# View real-time server logs
+docker compose logs -f
+
+# Stop the server cleanly
+docker compose down
+````
+
+## File: docs/OPEN_WEBUI.md
+````markdown
+# Service Documentation: Open WebUI & Ollama (LXC 104)
+
+## Container Overview
+* **CT ID:** `104`
+* `* **Hostname:** openwebui-ollama`[cite: 2]
+* **IP Address:** `10.0.0.104`
+* **Ports:** `3000` (Open WebUI Dashboard) | `11434` (Ollama API)
+* **Storage:** `local-lvm`
+* **GPU Passthrough:** NVIDIA GeForce GTX 1650 SUPER (`/dev/nvidia0`)
+
+---
+
+## Active AI Models
+
+| Model Name | Parameters | Primary Purpose | Performance / Execution |
+| :--- | :--- | :--- | :--- |
+| **`qwen2.5:3b`** | 3.09B | Daily Driver, Summarization, Code & Chat | 100% GPU VRAM (Instant) |
+| **`deepseek-r1:1.5b`** | 1.78B | Multi-step Reasoning, Math, Logic | 100% GPU VRAM (Fast) |
+
+---
+
+## Service Management & Troubleshooting
+
+### Check GPU Status Inside LXC Shell
+```bash
+nvtop
+# OR
+nvidia-smi
+```
+````
+
+## File: README.md
+````markdown
+# Proxmox VE Homelab Infrastructure
+
+[![Proxmox VE](https://img.shields.io/badge/Proxmox_VE-9.x-E57008?style=flat&logo=proxmox)](https://www.proxmox.com)
+[![Debian](https://img.shields.io/badge/Debian-12-A81D33?style=flat&logo=debian)](https://www.debian.org)
+[![Pi-hole](https://img.shields.io/badge/Pi--hole-v6-96060C?style=flat&logo=pi-hole)](https://pi-hole.net)
+[![Unbound](https://img.shields.io/badge/Unbound-DNSSEC-4183C4)](https://nlnetlabs.nl/projects/unbound/about/)
+[![Uptime Kuma](https://img.shields.io/badge/Uptime_Kuma-Monitoring-5CDB95?style=flat&logo=uptime-kuma)](https://github.com/louislam/uptime-kuma)
+[![Minecraft](https://img.shields.io/badge/Minecraft-Java_Server-2E7D32?style=flat&logo=minecraft&logoColor=white)](https://www.minecraft.net)
+[![Jellyfin](https://img.shields.io/badge/Jellyfin-Media_Server-00A4DC?style=flat&logo=jellyfin&logoColor=white)](https://jellyfin.org)
+[![Open WebUI](https://img.shields.io/badge/Open_WebUI-v0.5-008080?style=flat&logo=open-webui&logoColor=white)](https://github.com/open-webui/open-webui)
+[![Ollama](https://img.shields.io/badge/Ollama-Local_AI-000000?style=flat&logo=ollama&logoColor=white)](https://ollama.com)
+
+A hands-on, evolving homelab project documenting core network services, Proxmox virtualization, and systems administration.
+
+---
+
+## Repository Structure
+
+* `configs/` — Sanitized configuration files for homelab services.
+* `configs/lxc/` — Proxmox VE container definition files (hardware, bind mounts, GPU passthrough).
+* `configs/unbound/` — Recursive DNS resolver configuration (`pi-hole.conf`).
+* `docs/` — Technical documentation and verification testing logs.
+* `docs/UPTIME_KUMA.md` — Uptime Kuma installation and monitor configurations.
+* `docs/JELLYFIN.md` — Jellyfin media server deployment, ZFS storage bind mounts, and maintenance.
+* `docs/MINECRAFT.md` — Dedicated Minecraft server VM specs, network configuration, and Docker Compose setup.
+* `docs/OPEN_WEBUI.md` — Open WebUI & Ollama LXC container setup, GPU passthrough, and active models.
+
+---
+
+## Active Infrastructure Services 
+
+| Service | Host / Container | IP / Port | Function |
+| :--- | :--- | :--- | :--- |
+| **Proxmox VE** | Bare-Metal Host | `10.0.0.147` | Primary Hypervisor Platform |
+| **Pi-hole v6** | LXC 100 (Debian) | `10.0.0.100:53` | Network-wide Ad & Tracker Filtering |
+| **Unbound** | LXC 100 (Debian) | `127.0.0.1:5335` | Local Recursive DNSSEC Resolver |
+| **Uptime Kuma** | LXC 101 (Debian) | `10.0.0.101:3001` | Infrastructure & Service Health Monitoring |
+| **Jellyfin** | LXC 102 (Debian) | `10.0.0.102:8096` | Media Streaming Platform (ZFS Storage Bind Mounts) |
+| **Minecraft Server** | VM 103 (Ubuntu) | `10.0.0.103:25565` | Dedicated Minecraft Server (Docker Compose) |
+| **Open WebUI / Ollama** | LXC 104 (Debian) | `10.0.0.104:3000` | Self-Hosted Local AI LLM Service (GTX 1650 SUPER Passthrough) |
+
+---
+
+## DNS Validation Commands
+
+```bash
+# 1. Invalid signature (Must return SERVFAIL)
+dig fail01.dnssec.works @127.0.0.1 -p 5335
+
+# 2. Valid signature (Must return NOERROR with 'ad' flag)
+dig cloudflare.com @127.0.0.1 -p 5335
+````
