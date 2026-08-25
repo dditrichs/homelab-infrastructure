@@ -49,15 +49,6 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 
 ---
 
-## Jellyfin Network & Access Strategy
-
-To avoid the performance bottlenecks and metadata/image-loading issues often introduced by routing high-bandwidth streaming through internal reverse proxy layers, Jellyfin is configured with split access paths:
-
-* **`jellyfin-local`:** Accessed directly via local IP and port (`10.0.0.102:8096`) for unthrottled local playback, full metadata asset loading, and local device casting.
-* **`jellyfin-tailscale`:** Accessed directly via the private Tailscale mesh network IP, ensuring encrypted remote connectivity without proxy overhead.
-
----
-
 ## DNS Validation Commands
 
 ```bash
