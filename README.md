@@ -30,7 +30,6 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 * `docs/OPEN_WEBUI.md` — Open WebUI & Ollama LXC container setup, GPU passthrough, and active models.
 * `docs/VAULTWARDEN.md` — Vaultwarden password manager setup and SSL documentation.
 * `docs/NGINX_PROXY_MANAGER.md` — Nginx Proxy Manager architecture and wildcard SSL guide.
-* `docs/TAILSCALE.md` — Tailscale mesh network and secure remote access routing.
 
 ---
 
