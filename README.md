@@ -17,12 +17,27 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 
 ---
 
+## Architecture & Hardware
+
+The environment runs on a single self-hosted Proxmox VE node, utilizing a **Lenovo ThinkStation P330** workstation. 
+
+* **CPU:** Intel Core i5-8500 (6 Cores, 3.00 GHz Base)
+* **Memory:** 16 GB DDR4-2400 RAM
+* **Storage Pool:**
+  * **Boot/Fast Storage:** 256 GB Samsung Pro SSD (dedicated to Proxmox OS, LXC, and VM root disks)
+  * **Bulk Storage:** 4 TB Seagate Exos Enterprise HDD (dedicated to bulk media, data storage, and backups)
+* **Hardware Acceleration & AI:**
+  * **Primary GPU:** NVIDIA GeForce GTX 1650 SUPER (passed through to specific containers, such as Open WebUI, for local AI/LLM workloads)
+
+---
+
 ## Repository Structure
 
 * `configs/` — Sanitized configuration files for homelab services.
 * `configs/docker/` — Docker Compose deployment files for containerized services.
 * `configs/lxc/` — Proxmox VE container definition files (hardware, bind mounts, GPU passthrough).
 * `configs/unbound/` — Recursive DNS resolver configuration (`pi-hole.conf`).
+* `configs/vms/` — Virtual machine configuration files (dedicated Minecraft VM).
 * `docs/` — Technical documentation and verification testing logs.
 * `docs/UPTIME_KUMA.md` — Uptime Kuma installation and monitor configurations.
 * `docs/JELLYFIN.md` — Jellyfin media server deployment, ZFS storage bind mounts, and dual local/Tailscale setup.
@@ -37,15 +52,15 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 
 | Service | Host / Container | IP / Port | Function |
 | :--- | :--- | :--- | :--- |
-| **Proxmox VE** | Bare-Metal Host | `10.0.0.147` | Primary Hypervisor Platform |
-| **Pi-hole v6** | LXC 100 (Debian) | `10.0.0.100:53` | Network-wide Ad & Tracker Filtering |
+| **Proxmox VE** | Bare-Metal Host | `10.0.0.x` | Primary Hypervisor Platform |
+| **Pi-hole v6** | LXC 100 (Debian) | `10.0.0.x:53` | Network-wide Ad & Tracker Filtering |
 | **Unbound** | LXC 100 (Debian) | `127.0.0.1:5335` | Local Recursive DNSSEC Resolver |
-| **Uptime Kuma** | LXC 101 (Debian) | `10.0.0.101:3001` | Infrastructure & Service Health Monitoring |
-| **Jellyfin** | LXC 102 (Docker) | `10.0.0.102:8096` / Tailscale IP | Media Server with ZFS bind mount & split local/Tailscale direct access |
-| **Minecraft Server** | VM 103 (Ubuntu) | `10.0.0.103:25565` | Dedicated Minecraft Server (Docker Compose) |
-| **Open WebUI / Ollama** | LXC 104 (Debian) | `10.0.0.104:3000` | Self-Hosted Local AI LLM Service (GTX 1650 SUPER Passthrough) |
-| **Vaultwarden** | Docker Container | `10.0.0.105:8080` | Self-Hosted Password Manager (Secured via NPM & SSL) |
-| **Nginx Proxy Manager** | Bare-Metal / Docker | `10.0.0.106:81` | Reverse Proxy & Wildcard SSL Certificate Management |
+| **Uptime Kuma** | LXC 101 (Debian) | `10.0.0.x:3001` | Infrastructure & Service Health Monitoring |
+| **Jellyfin** | LXC 102 (Docker) | `10.0.0.x:8096` / Tailscale IP:8096 | Media Server with ZFS bind mount & split local/Tailscale direct access |
+| **Minecraft Server** | VM 103 (Ubuntu) | `10.0.0.x:25565` | Dedicated Minecraft Server (Docker Compose) |
+| **Open WebUI / Ollama** | LXC 104 (Debian) | `10.0.0.x:3000` | Self-Hosted Local AI LLM Service (GTX 1650 SUPER Passthrough) |
+| **Vaultwarden** | Docker Container | `10.0.0.x:8080` | Self-Hosted Password Manager (Secured via NPM & SSL) |
+| **Nginx Proxy Manager** | Bare-Metal / Docker | `10.0.0.x:81` | Reverse Proxy & Wildcard SSL Certificate Management |
 
 ---
 
