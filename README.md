@@ -11,6 +11,7 @@
 [![Ollama](https://img.shields.io/badge/Ollama-Local_AI-000000?style=flat&logo=ollama&logoColor=white)](https://ollama.com)
 [![Nginx Proxy Manager](https://img.shields.io/badge/Nginx_Proxy_Manager-SSL_Proxy-009900?style=flat&logo=nginxproxymanager&logoColor=white)](https://nginxproxymanager.com)
 [![Vaultwarden](https://img.shields.io/badge/Vaultwarden-Password_Manager-175DDC?style=flat&logo=bitwarden&logoColor=white)](https://github.com/dani-garcia/vaultwarden)
+[![Tailscale](https://img.shields.io/badge/Tailscale-Mesh_VPN-2A3748?style=flat&logo=tailscale&logoColor=white)](https://tailscale.com)
 
 A hands-on, evolving homelab project documenting core network services, Proxmox virtualization, and systems administration.
 
@@ -24,12 +25,12 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 * `configs/unbound/` — Recursive DNS resolver configuration (`pi-hole.conf`).
 * `docs/` — Technical documentation and verification testing logs.
 * `docs/UPTIME_KUMA.md` — Uptime Kuma installation and monitor configurations.
-* `docs/JELLYFIN.md` — Jellyfin media server deployment, ZFS storage bind mounts, and dual local/Tailscale setup.[cite: 1]
+* `docs/JELLYFIN.md` — Jellyfin media server deployment, ZFS storage bind mounts, and dual local/Tailscale setup.
 * `docs/MINECRAFT.md` — Dedicated Minecraft server VM specs, network configuration, and Docker Compose setup.
 * `docs/OPEN_WEBUI.md` — Open WebUI & Ollama LXC container setup, GPU passthrough, and active models.
 * `docs/VAULTWARDEN.md` — Vaultwarden password manager setup and SSL documentation.
 * `docs/NGINX_PROXY_MANAGER.md` — Nginx Proxy Manager architecture and wildcard SSL guide.
-* `docs/TAILSCALE.md` — Tailscale mesh network and secure remote access routing.[cite: 1]
+* `docs/TAILSCALE.md` — Tailscale mesh network and secure remote access routing.
 
 ---
 
@@ -41,8 +42,8 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 | **Pi-hole v6** | LXC 100 (Debian) | `10.0.0.100:53` | Network-wide Ad & Tracker Filtering |
 | **Unbound** | LXC 100 (Debian) | `127.0.0.1:5335` | Local Recursive DNSSEC Resolver |
 | **Uptime Kuma** | LXC 101 (Debian) | `10.0.0.101:3001` | Infrastructure & Service Health Monitoring |
-| **Jellyfin (Local)** | LXC 102 (Debian) | `10.0.0.102:8096` | High-bandwidth local streaming, ZFS storage bind mounts, & asset loading[cite: 1] |
-| **Jellyfin (Tailscale)** | LXC 102 / Tailnet | Tailscale IP: `8096` | Secure encrypted remote streaming over tailnet[cite: 1] |
+| **Jellyfin (Local)** | LXC 102 (Debian) | `10.0.0.102:8096` | High-bandwidth local streaming, ZFS storage bind mounts, & asset loading |
+| **Jellyfin (Tailscale)** | LXC 102 / Tailnet | Tailscale IP: `8096` | Secure encrypted remote streaming over tailnet |
 | **Minecraft Server** | VM 103 (Ubuntu) | `10.0.0.103:25565` | Dedicated Minecraft Server (Docker Compose) |
 | **Open WebUI / Ollama** | LXC 104 (Debian) | `10.0.0.104:3000` | Self-Hosted Local AI LLM Service (GTX 1650 SUPER Passthrough) |
 | **Vaultwarden** | Docker Container | `10.0.0.105:8080` | Self-Hosted Password Manager (Secured via NPM & SSL) |
@@ -52,10 +53,10 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 
 ## Jellyfin Network & Access Strategy
 
-To avoid the performance bottlenecks and metadata/image-loading issues often introduced by routing high-bandwidth streaming through internal reverse proxy layers, Jellyfin is configured with split access paths[cite: 1]:
+To avoid the performance bottlenecks and metadata/image-loading issues often introduced by routing high-bandwidth streaming through internal reverse proxy layers, Jellyfin is configured with split access paths:
 
-* **`jellyfin-local`:** Accessed directly via local IP and port (`10.0.0.102:8096`) for unthrottled local playback, full metadata asset loading, and local device casting[cite: 1].
-* **`jellyfin-tailscale`:** Accessed directly via the private Tailscale mesh network IP, ensuring encrypted remote connectivity without proxy overhead[cite: 1].
+* **`jellyfin-local`:** Accessed directly via local IP and port (`10.0.0.102:8096`) for unthrottled local playback, full metadata asset loading, and local device casting.
+* **`jellyfin-tailscale`:** Accessed directly via the private Tailscale mesh network IP, ensuring encrypted remote connectivity without proxy overhead.
 
 ---
 
