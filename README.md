@@ -22,7 +22,7 @@ A hands-on, evolving homelab project documenting core network services, Proxmox 
 The environment runs on a single self-hosted Proxmox VE node, utilizing a **Lenovo ThinkStation P330** workstation. 
 
 * **CPU:** Intel Core i5-8500 (6 Cores, 3.00 GHz Base)
-* **Memory:** 16 GB DDR4-2400 RAM
+* **Memory:** 32 GB DDR4-2400 RAM
 * **Storage Pool:**
   * **Boot/Fast Storage:** 256 GB Samsung Pro SSD (dedicated to Proxmox OS, LXC, and VM root disks)
   * **Bulk Storage:** 4 TB Seagate Exos Enterprise HDD (dedicated to bulk media, data storage, and backups)
