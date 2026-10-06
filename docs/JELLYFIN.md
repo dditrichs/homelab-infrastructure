@@ -3,7 +3,7 @@
 ## Container Overview
 * **CT ID:** `102`
 * **Hostname:** `jellyfin`
-* **Local IP Address:** `10.0.0.102`
+* **Local IP Address:** `10.0.0.x`
 * **Tailscale IP:** `Tailscale Mesh IP`
 * **Port:** `8096` (HTTP Web UI)
 * **OS:** Debian 13 (Trixie)

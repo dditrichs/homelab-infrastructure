@@ -1,7 +1,7 @@
 # Service Documentation: Nginx Proxy Manager (NPM)
 
 ## Overview
-* **Host IP:** `10.0.0.106`
+* **Host IP:** `10.0.0.x`
 * **Ports:** `80` (HTTP), `443` (HTTPS), `81` (Admin Web UI)
 * **Primary Role:** Reverse proxy, local SSL termination, and wildcard certificate automation.
 

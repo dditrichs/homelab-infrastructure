@@ -3,7 +3,7 @@
 ## Virtual Machine Overview
 * **VM ID:** `103`
 * **Hostname:** `minecraft`
-* **IP Address:** `10.0.0.103`
+* **IP Address:** `10.0.0.x`
 * **OS:** Ubuntu 22.04.5 LTS
 * **Hypervisor Allocation:** 4 Cores / 8192 MB RAM / 32 GB SSD Storage (`local-lvm`)
 * **Storage Controller:** `virtio-scsi-single` with `iothread=1` (Optimized I/O)

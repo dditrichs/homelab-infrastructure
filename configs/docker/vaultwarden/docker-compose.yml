@@ -8,4 +8,4 @@ services:
     volumes:
       - ./vw-data:/data
     ports:
-      - '10.0.0.105:8080:80'  
+      - '10.0.0.1:8080:80'  

@@ -2,7 +2,7 @@
 
 ## Overview
 * **Service:** Vaultwarden (Unofficial Bitwarden compatible server written in Rust)
-* **IP / Port:** `10.0.0.105:80` (Proxied via NPM)
+* **IP / Port:** `10.0.0.x:80` (Proxied via NPM)
 * **Subdomain:** `vault.damonditrichs.com`
 * **Deployment Method:** Docker Compose
 
