@@ -2,6 +2,8 @@
 
 [![Proxmox VE](https://img.shields.io/badge/Proxmox_VE-9.x-E57008?style=flat&logo=proxmox)](https://www.proxmox.com)
 [![Debian](https://img.shields.io/badge/Debian-12-A81D33?style=flat&logo=debian)](https://www.debian.org)
+[![Ubuntu](https://img.shields.io/badge/Ubuntu-Server-E95420?style=flat&logo=ubuntu&logoColor=white)](https://ubuntu.com)
+[![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com)
 [![TrueNAS](https://img.shields.io/badge/TrueNAS-Storage_Server-0099CC?style=flat&logo=truenas&logoColor=white)](https://www.truenas.com)
 [![Pi-hole](https://img.shields.io/badge/Pi--hole-v6-96060C?style=flat&logo=pi-hole)](https://pi-hole.net)
 [![Unbound](https://img.shields.io/badge/Unbound-DNSSEC-4183C4)](https://nlnetlabs.nl/projects/unbound/about/)
