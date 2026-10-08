@@ -2,6 +2,7 @@
 
 [![Proxmox VE](https://img.shields.io/badge/Proxmox_VE-9.x-E57008?style=flat&logo=proxmox)](https://www.proxmox.com)
 [![Debian](https://img.shields.io/badge/Debian-12-A81D33?style=flat&logo=debian)](https://www.debian.org)
+[![TrueNAS](https://img.shields.io/badge/TrueNAS-Storage_Server-0099CC?style=flat&logo=truenas&logoColor=white)](https://www.truenas.com)
 [![Pi-hole](https://img.shields.io/badge/Pi--hole-v6-96060C?style=flat&logo=pi-hole)](https://pi-hole.net)
 [![Unbound](https://img.shields.io/badge/Unbound-DNSSEC-4183C4)](https://nlnetlabs.nl/projects/unbound/about/)
 [![Uptime Kuma](https://img.shields.io/badge/Uptime_Kuma-Monitoring-5CDB95?style=flat&logo=uptime-kuma)](https://github.com/louislam/uptime-kuma)
@@ -39,6 +40,7 @@ The environment runs on a single self-hosted Proxmox VE node, utilizing a **Leno
 * `configs/unbound/` — Recursive DNS resolver configuration (`pi-hole.conf`).
 * `configs/vms/` — Virtual machine configuration files (dedicated Minecraft VM).
 * `docs/` — Technical documentation and verification testing logs.
+* `docs/TRUENAS.md` — TrueNAS Core storage configuration, SMB shares, and daily automated backup workflow.
 * `docs/UPTIME_KUMA.md` — Uptime Kuma installation and monitor configurations.
 * `docs/JELLYFIN.md` — Jellyfin media server deployment, ZFS storage bind mounts, and dual local/Tailscale setup.
 * `docs/MINECRAFT.md` — Dedicated Minecraft server VM specs, network configuration, and Docker Compose setup.
@@ -59,8 +61,9 @@ The environment runs on a single self-hosted Proxmox VE node, utilizing a **Leno
 | **Jellyfin** | LXC 102 (Docker) | `10.0.0.x:8096` / Tailscale IP:8096 | Media Server with ZFS bind mount & split local/Tailscale direct access |
 | **Minecraft Server** | VM 103 (Ubuntu) | `10.0.0.x:25565` | Dedicated Minecraft Server (Docker Compose) |
 | **Open WebUI / Ollama** | LXC 104 (Debian) | `10.0.0.x:3000` | Self-Hosted Local AI LLM Service (GTX 1650 SUPER Passthrough) |
-| **Vaultwarden** | Docker Container | `10.0.0.x:8080` | Self-Hosted Password Manager (Secured via NPM & SSL) |
-| **Nginx Proxy Manager** | Bare-Metal / Docker | `10.0.0.x:81` | Reverse Proxy & Wildcard SSL Certificate Management |
+| **Vaultwarden** | LXC 105 (Debian / Docker) | `10.0.0.x:8080` | Self-Hosted Password Manager (Secured via NPM & SSL) |
+| **Nginx Proxy Manager** | LXC 106 (Debian / Docker) | `10.0.0.x:81` | Reverse Proxy & Wildcard SSL Certificate Management |
+| **TrueNAS** | VM 107 (TrueNAS Core) | `10.0.0.x` | Network-Attached Storage (NAS) & Daily Windows File History Backup Target |
 
 ---
 
